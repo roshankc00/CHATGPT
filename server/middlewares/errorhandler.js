@@ -15,6 +15,7 @@ const handleError=(err,req,res,next)=>{
     res.json({
         sucess:false,
         message:err?.message,
+        stack:err?.stack
     })
 }
 
