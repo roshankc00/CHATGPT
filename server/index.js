@@ -5,7 +5,7 @@ const bodyParser=require('body-parser')
 const dotenv=require('dotenv').config()
 const morgan = require('morgan');
 const connectDb = require('./config/connect');
-
+const userRoute=require('./routes/authRoute')
 
 // all the rest variables 
 const app=express()
@@ -17,11 +17,12 @@ connectDb();
 // all the middlewares
 app.use(cors());
 app.use(bodyParser.urlencoded({extended:false}));
-
+app.use(express.json())
 app.use(morgan('dev'))
 app.use(express.json())
 
 // all the routes
+app.use('/api/v1/user',userRoute)
 
 app.use(notFound)
 app.use(handleError)
